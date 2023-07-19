@@ -28,19 +28,19 @@ impl Image {
     // https://github.com/nashaofu/screenshots-rs/issues/29
     // https://github.com/nashaofu/screenshots-rs/issues/38
     // BGRA 转换为 RGBA
-    for r in 0..u_height {
-      for c in 0..u_width {
-        let index = (r * u_width + c) * 4;
-        let i = r * bytes_per_row + c * 4;
-        let b = bgra[i];
-        let r = bgra[i + 2];
-
-        rgba[index] = r;
-        rgba[index + 1] = bgra[i + 1];
-        rgba[index + 2] = b;
-        rgba[index + 3] = 255;
-      }
-    }
+    // for r in 0..u_height {
+    //   for c in 0..u_width {
+    //     let index = (r * u_width + c) * 4;
+    //     let i = r * bytes_per_row + c * 4;
+    //     let b = bgra[i];
+    //     let r = bgra[i + 2];
+    //
+    //     rgba[index] = r;
+    //     rgba[index + 1] = bgra[i + 1];
+    //     rgba[index + 2] = b;
+    //     rgba[index + 3] = 255;
+    //   }
+    // }
 
     Image::new(width, height, rgba)
   }
@@ -57,7 +57,7 @@ impl Image {
     &self.rgba
   }
 
-  pub fn to_png(&self) -> Result<Vec<u8>, EncodingError> {
+  pub fn to_png(&self) -> Result<Vec<u8>> {
     let mut buffer = Vec::new();
     let mut encoder = Encoder::new(&mut buffer, self.width, self.height);
 
@@ -68,7 +68,11 @@ impl Image {
     writer.write_image_data(&self.rgba)?;
     writer.finish()?;
 
-    Ok(buffer)
+    anyhow::Ok(buffer)
+  }
+
+  pub fn buffer(&self) -> &Vec<u8> {
+    &self.rgba
   }
 }
 

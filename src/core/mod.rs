@@ -16,8 +16,11 @@ mod linux;
 
 #[cfg(target_os = "linux")]
 use linux::*;
+use crate::core::image::Image;
 
 mod image;
+
+use anyhow::{anyhow, Ok, Result};
 
 #[derive(Debug, Clone, Copy)]
 pub struct DisplayInfo {
@@ -37,9 +40,9 @@ pub struct Screen {
 }
 
 impl Screen {
-    pub fn new(display_info: &DisplayInfo) -> Self {
+    pub fn new(display_info: DisplayInfo) -> Self {
         Screen {
-            display_info: *display_info,
+            display_info,
         }
     }
 

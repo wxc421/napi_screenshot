@@ -1,6 +1,7 @@
-use anyhow::{anyhow, Ok, Result};
+use anyhow::{anyhow, Result};
 use fxhash::hash32;
 use std::{mem, ops::Deref, ptr};
+use std::time::Instant;
 use widestring::U16CString;
 use windows::{
   core::PCWSTR,
@@ -97,6 +98,8 @@ extern "system" fn monitor_enum_proc(
 }
 
 fn capture(display_id: u32, x: i32, y: i32, width: i32, height: i32) -> Result<Image> {
+  let start = Instant::now();
+
   let monitor_info_exw = get_monitor_info_exw_from_id(display_id)?;
 
   let sz_device = monitor_info_exw.szDevice;
@@ -197,6 +200,8 @@ fn capture(display_id: u32, x: i32, y: i32, width: i32, height: i32) -> Result<I
     );
   }
 
+  println!("get data cost: {:?}", start.elapsed());
+
   // 旋转图像,图像数据是倒置的
   let mut chunks: Vec<Vec<u8>> = data
     .chunks(width as usize * 4)
@@ -211,7 +216,7 @@ fn capture(display_id: u32, x: i32, y: i32, width: i32, height: i32) -> Result<I
     bitmap.bmHeight as u32,
     bitmap.bmWidthBytes as usize,
   );
-
+  println!("get image cost: {:?}", start.elapsed());
   Ok(image)
 }
 
