@@ -1,5 +1,5 @@
 {
-  "name": "napi_screenshot-win32-arm64-msvc",
+  "name": "@napi_screenshot/napi_screenshot-win32-arm64-msvc",
   "version": "0.0.0",
   "os": [
     "win32"

@@ -1,3 +1,3 @@
-# `napi_screenshot-win32-arm64-msvc`
+# `@napi_screenshot/napi_screenshot-win32-arm64-msvc`
 
-This is the **aarch64-pc-windows-msvc** binary for `napi_screenshot`
+This is the **aarch64-pc-windows-msvc** binary for `@napi_screenshot/napi_screenshot`
