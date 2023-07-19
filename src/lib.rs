@@ -8,6 +8,8 @@ Clippy 是一个 Lint 工具集，用于检查 Rust 代码中的常见错误和�
  */
 #![deny(clippy::all)]
 
+mod core;
+
 #[macro_use]
 extern crate napi_derive;
 
