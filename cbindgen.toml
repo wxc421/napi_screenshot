@@ -1,0 +1,9 @@
+# The language to output bindings in
+#
+# possible values: "C", "C++", "Cython"
+#
+# default: "C++"
+language = "C"
+# Whether to add a `#pragma once` guard
+# default: doesn't emit a `#pragma once`
+pragma_once = true

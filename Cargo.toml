@@ -1,0 +1,25 @@
+[package]
+edition = "2021"
+name = "napi_screenshot"
+version = "0.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
+napi = { version = "2.12.2", default-features = false, features = ["napi4"] }
+napi-derive = "2.12.2"
+libc = "0.2"
+display-info = "0.4.2"
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+# 在 Rust 的 Cargo.toml 文件中，[profile.release] 部分用于配置在 Release 模式下编译器的行为。
+# 其中的 lto 属性用于启用或禁用链接时优化（link-time optimization，LTO）。
+# 链接时优化是一种编译器优化技术，可以在链接阶段对多个编译单元进行优化。这种优化技术可以在编译期间进行更多的优化，
+# 因为编译器可以看到整个程序，并且可以进行更多的分析和优化。启用链接时优化可以显著提高程序的性能，但是会增加编译时间和可执行文件的大小。
+# 在使用 cargo build --release 命令构建 Release 版本时，您可以在 Cargo.toml 文件中将 lto 属性设置为 true，以启用链接时优化。
+[profile.release]
+lto = true
