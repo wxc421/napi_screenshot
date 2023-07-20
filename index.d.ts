@@ -18,6 +18,7 @@ export interface DisplayInfo {
   isPrimary: boolean
 }
 export function sum(a: number, b: number): number
+export function getDisplayInfos(): Array<DisplayInfo>
 export function screenShots(): void
 export function getScreenShotByDisplayInfo(screenShot: ScreenShot): void
 export function getScreenShotByteByDisplayInfo(screenShot: ScreenShot): Array<number>

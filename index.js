@@ -252,9 +252,10 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { sum, screenShots, getScreenShotByDisplayInfo, getScreenShotByteByDisplayInfo, getNums } = nativeBinding
+const { sum, getDisplayInfos, screenShots, getScreenShotByDisplayInfo, getScreenShotByteByDisplayInfo, getNums } = nativeBinding
 
 module.exports.sum = sum
+module.exports.getDisplayInfos = getDisplayInfos
 module.exports.screenShots = screenShots
 module.exports.getScreenShotByDisplayInfo = getScreenShotByDisplayInfo
 module.exports.getScreenShotByteByDisplayInfo = getScreenShotByteByDisplayInfo
