@@ -49,9 +49,9 @@ jobs:
     name: stable - ${{ matrix.settings.target }} - node@18
     runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 # 使用这个 action 将代码检出到工作目录中
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3 # 使用这个 action 安装指定版本的 Node.js
         if: ${{ !matrix.settings.docker }}
         with:
           node-version: 18

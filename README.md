@@ -17,3 +17,12 @@ build.rs 文件通常用于执行以下操作：
 yarn build
 node example.mjs
 ```
+
+### CI.yml
+如果将 check-latest 参数设置为 false，则 actions/setup-node@v3 action 将不会检查 Node.js 的最新可用版本，而是直接安装指定版本的 Node.js。
+
+默认情况下，如果未指定或将 check-latest 设置为 true，则 actions/setup-node@v3 action 将检查满足 node-version 参数中指定的版本范围的最新可用版本的 Node.js。如果存在更新版本，则安装更新版本而非指定版本。
+
+例如，如果 node-version 设置为 14.x，并且 check-latest 设置为 true，则 actions/setup-node@v3 action 将检查 14.x 范围内的最新可用版本的 Node.js，并安装它，如果它比当前安装的版本更新。如果 check-latest 设置为 false，则它将安装最新可用的满足 14.x 范围的版本，而不管它是否比当前安装的版本更新。
+
+总之，将 check-latest 设置为 false 可以确保始终安装特定版本的 Node.js，而不管新版本是否可用。这在某些情况下是有用的。
