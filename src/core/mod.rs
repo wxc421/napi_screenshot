@@ -21,18 +21,8 @@ use crate::core::image::Image;
 mod image;
 
 use anyhow::{anyhow, Ok, Result};
+use display_info::DisplayInfo;
 
-#[derive(Debug, Clone, Copy)]
-pub struct DisplayInfo {
-    pub id: u32,
-    pub x: i32,
-    pub y: i32,
-    pub width: u32,
-    pub height: u32,
-    pub rotation: f32,
-    pub scale_factor: f32,
-    pub is_primary: bool,
-}
 
 #[derive(Debug, Clone, Copy)]
 pub struct Screen {

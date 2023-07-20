@@ -1,5 +1,6 @@
 use std::{fs, thread};
 use std::time::Instant;
+use crate::core::Screen;
 
 #[napi(object)]
 #[derive(Debug, Clone)]
@@ -33,22 +34,15 @@ pub fn screen_shots() -> () {
     let displays = display_info::DisplayInfo::all().unwrap();
     let count = displays.len();
     let mut handles = vec![];
-    for display in displays {
+    for display_info in displays {
         let handle = thread::spawn(move || {
-            let screen = crate::core::Screen::new(crate::core::DisplayInfo {
-                id: display.id,
-                x: display.x,
-                y: display.y,
-                width: display.width,
-                height: display.height,
-                rotation: display.rotation as f32,
-                scale_factor: display.scale_factor as f32,
-                is_primary: display.is_primary,
-            });
+            let id = display_info.id;
+            let screen = Screen::new(display_info);
             let image = screen.capture().unwrap();
+            // println!("buffer: {:?}", &image.buffer()[..100]);
             let buffer = image.to_png().unwrap();
             fs::write(format!("target/{}.png", screen.display_info.id), buffer).unwrap();
-            println!("thread id: {:?}，screenshot finish,cost: {:?}", thread::current().id(), start.elapsed());
+            println!("display_id: {:?} thread id: {:?}，screenshot finish,cost: {:?}", id, thread::current().id(), start.elapsed());
         });
         handles.push(handle);
     }
@@ -61,19 +55,32 @@ pub fn screen_shots() -> () {
 #[napi]
 pub fn get_screen_shot_by_display_info(screen_shot: ScreenShot) {
     let display_info = screen_shot.display_info;
-    let screen = crate::core::Screen::new(crate::core::DisplayInfo {
-        id: display_info.id,
-        x: display_info.x,
-        y: display_info.y,
-        width: display_info.width,
-        height: display_info.height,
-        rotation: display_info.rotation as f32,
-        scale_factor: display_info.scale_factor as f32,
-        is_primary: display_info.is_primary,
-    });
+    let screen = new_screen(display_info);
     let image = screen.capture().unwrap();
     let buffer = image.buffer();
-    fs::write(format!("target/{}.png", screen.display_info.id), buffer).unwrap();
+    fs::write(screen_shot.image_path, buffer).unwrap();
+}
+
+#[napi]
+pub fn get_screen_shot_byte_by_display_info(screen_shot: ScreenShot) -> Vec<u8> {
+    let display_info = screen_shot.display_info;
+    let screen = new_screen(display_info);
+    let image = screen.capture().unwrap();
+    image.into()
+}
+
+fn new_screen(info: DisplayInfo) -> Screen {
+    let screen = Screen::new(display_info::DisplayInfo {
+        id: info.id,
+        x: info.x,
+        y: info.y,
+        width: info.width,
+        height: info.height,
+        rotation: info.rotation as f32,
+        scale_factor: info.scale_factor as f32,
+        is_primary: info.is_primary,
+    });
+    screen
 }
 
 #[napi]

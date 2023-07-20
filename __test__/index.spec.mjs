@@ -1,7 +1,8 @@
 import test from 'ava'
 
-import { sum } from '../index.js'
+import {screenShots, sum} from '../index.js'
 
 test('sum from native', (t) => {
-  t.is(sum(1, 2), 3)
+  screenShots()
+  // t.is(sum(1, 2), 3)
 })

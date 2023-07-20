@@ -10,3 +10,10 @@ build.rs 文件通常用于执行以下操作：
 生成 C 代码。例如，您可以使用 build.rs 文件生成 C 代码，该代码包含在 Rust 代码中使用的外部 C 库的绑定。
 
 生成 Makefile 或其他构建文件。例如，您可以使用 build.rs 文件生成 Makefile，该文件包含在编译时使用的自定义构建规则
+
+
+## Example
+```node
+yarn build
+node example.mjs
+```
