@@ -10,8 +10,7 @@ Clippy 是一个 Lint 工具集，用于检查 Rust 代码中的常见错误和�
 
 pub mod core;
 pub mod napi;
+pub mod ffi;
 
 #[macro_use]
 extern crate napi_derive;
-
-// cbindgen --config cbindgen.toml --crate napi_screenshot --output napi_screenshot.h
