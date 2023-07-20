@@ -26,3 +26,10 @@ node example.mjs
 例如，如果 node-version 设置为 14.x，并且 check-latest 设置为 true，则 actions/setup-node@v3 action 将检查 14.x 范围内的最新可用版本的 Node.js，并安装它，如果它比当前安装的版本更新。如果 check-latest 设置为 false，则它将安装最新可用的满足 14.x 范围的版本，而不管它是否比当前安装的版本更新。
 
 总之，将 check-latest 设置为 false 可以确保始终安装特定版本的 Node.js，而不管新版本是否可用。这在某些情况下是有用的。
+
+
+### Publish
+```shell
+npm version patch
+git push --follow-tags
+```
