@@ -73,11 +73,14 @@ pub fn screen_shots() -> () {
 
 #[napi]
 pub fn get_screen_shot_by_display_info(screen_shot: ScreenShot) {
+    let start = Instant::now();
     let display_info = screen_shot.display_info;
+    let image_path = screen_shot.image_path;
     let screen = new_screen(display_info);
     let image = screen.capture().unwrap();
-    let buffer = image.buffer();
-    fs::write(screen_shot.image_path, buffer).unwrap();
+    let buffer = image.to_png().unwrap();
+    fs::write(image_path.clone(), buffer).unwrap();
+    println!("screenshot cost: {:?},image_path: {:?}", start.elapsed(), image_path.clone());
 }
 
 #[napi]
