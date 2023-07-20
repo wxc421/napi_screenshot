@@ -28,6 +28,25 @@ pub fn sum(a: i32, b: i32) -> i32 {
     a + b
 }
 
+
+#[napi]
+pub fn get_display_infos() -> Vec<DisplayInfo> {
+    let infos = display_info::DisplayInfo::all().unwrap();
+    let infos = infos.into_iter().map(|info| {
+        DisplayInfo {
+            id: info.id,
+            x: info.x,
+            y: info.y,
+            width: info.width,
+            height: info.height,
+            rotation: info.rotation as f64,
+            scale_factor: info.scale_factor as f64,
+            is_primary: info.is_primary,
+        }
+    }).collect();
+    infos
+}
+
 #[napi]
 pub fn screen_shots() -> () {
     let start = Instant::now();
