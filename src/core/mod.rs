@@ -13,9 +13,9 @@ use win32::*;
 #[cfg(target_os = "linux")]
 mod linux;
 
-
 #[cfg(target_os = "linux")]
 use linux::*;
+
 use crate::core::image::Image;
 
 mod image;
