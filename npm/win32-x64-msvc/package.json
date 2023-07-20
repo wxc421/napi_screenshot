@@ -1,5 +1,9 @@
 {
   "name": "@napi_screenshot/napi_screenshot-win32-x64-msvc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxc421/napi_screenshot"
+  },
   "version": "0.0.4",
   "os": [
     "win32"
