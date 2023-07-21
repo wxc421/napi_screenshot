@@ -13,7 +13,7 @@
       "defaults": false,
       "additional": [
         "aarch64-apple-darwin",
-        "win32-x64-msvc",
+        "x86_64-pc-windows-msvc",
         "x86_64-apple-darwin"
       ]
     }
