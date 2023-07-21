@@ -39,8 +39,8 @@
   },
   "packageManager": "yarn@3.6.1",
   "optionalDependencies": {
-    "@napi_screenshot/napi_screenshot-win32-x64-msvc": "0.0.6",
+    "@napi_screenshot/napi_screenshot-darwin-arm64": "0.0.6",
     "@napi_screenshot/napi_screenshot-darwin-x64": "0.0.6",
-    "@napi_screenshot/napi_screenshot-darwin-arm64": "0.0.6"
+    "@napi_screenshot/napi_screenshot-win32-x64-msvc": "0.0.6"
   }
 }

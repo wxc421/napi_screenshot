@@ -28,12 +28,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@napi_screenshot/napi_screenshot-darwin-arm64@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@napi_screenshot/napi_screenshot-darwin-arm64@npm:0.0.6"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@napi_screenshot/napi_screenshot-darwin-x64@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@napi_screenshot/napi_screenshot-darwin-x64@npm:0.0.6"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@napi_screenshot/napi_screenshot-win32-x64-msvc@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@napi_screenshot/napi_screenshot-win32-x64-msvc@npm:0.0.6"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@napi_screenshot/napi_screenshot@workspace:.":
   version: 0.0.0-use.local
   resolution: "@napi_screenshot/napi_screenshot@workspace:."
   dependencies:
     "@napi-rs/cli": ^2.16.2
+    "@napi_screenshot/napi_screenshot-darwin-arm64": 0.0.6
+    "@napi_screenshot/napi_screenshot-darwin-x64": 0.0.6
+    "@napi_screenshot/napi_screenshot-win32-x64-msvc": 0.0.6
     ava: ^5.1.1
+  dependenciesMeta:
+    "@napi_screenshot/napi_screenshot-darwin-arm64":
+      optional: true
+    "@napi_screenshot/napi_screenshot-darwin-x64":
+      optional: true
+    "@napi_screenshot/napi_screenshot-win32-x64-msvc":
+      optional: true
   languageName: unknown
   linkType: soft
 
